@@ -1,12 +1,13 @@
 with open('./input/names/invited_names.txt', mode='r') as file:
     list_names = file.read().splitlines()
 
-for name in list_names:
-    with open('./input/letters/starting_letter.txt', mode='r') as file:
-        example = file.read()
-        example = example.replace('[name]', name)
-    with open(f'./output/readytosend/{name}.txt', mode='w') as sendfile:
-        sendfile.write(example)
+with open('./input/letters/starting_letter.txt', mode='r') as file:
+    example = file.read()
+
+    for name in list_names:
+        new_letter = example.replace('[name]', name)
+        with open(f'./output/readytosend/{name}.txt', mode='w') as sendfile:
+            sendfile.write(new_letter)
 
 # TODO: Create a letter using starting_letter.txt
 # for each name in invited_names.txt
